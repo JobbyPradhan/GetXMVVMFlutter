@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm/res/routes/routes.dart';
+import 'package:getx_mvvm/res/values/language.dart';
+import 'package:getx_mvvm/res/values/theme.dart';
 import 'package:getx_mvvm/view/splash_screen.dart';
 
 void main() {
@@ -15,11 +17,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-
+      translations: Language(),
+      debugShowCheckedModeBanner: false,
+      locale: const Locale('en' , 'US'),
+      fallbackLocale: const Locale('en', 'US'),
+      theme: MyTheme.lightTheme(context),
+      darkTheme: MyTheme.darkTheme(context),
+      home: const SplashScreen(),
       getPages: AppRoutes.appRoutes(),
 
     );
