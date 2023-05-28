@@ -28,14 +28,15 @@ class NetworkApiService extends BaseApiService{
          dynamic responseJson = jsonDecode(response.body);
          return responseJson;
        case 400 :
-         throw InvalidUrlException();
+         dynamic responseJson = jsonDecode(response.body);
+         return responseJson;
        default :
          throw FetchDataException(response.statusCode.toString());
      }
   }
 
   @override
-  Future postApi(var data, String url) async{
+  Future postApi(var data, String url,bool isRaw) async{
     if(kDebugMode){
       print(url);
       print(data);
@@ -43,7 +44,7 @@ class NetworkApiService extends BaseApiService{
     dynamic jsonResponse;
     try{
       final response = await http.post(Uri.parse(url),
-        body: jsonEncode(data)
+        body: isRaw ? jsonEncode(data) : data
       ).timeout(const Duration(seconds: 20));
       jsonResponse = returnResponse(response);
     }on SocketException{

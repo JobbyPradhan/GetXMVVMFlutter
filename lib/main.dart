@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx_mvvm/res/routes/routes.dart';
 import 'package:getx_mvvm/res/values/language.dart';
 import 'package:getx_mvvm/res/values/theme.dart';
+import 'package:getx_mvvm/view/login_screen.dart';
 import 'package:getx_mvvm/view/splash_screen.dart';
 
 void main() {
@@ -23,9 +24,8 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('en', 'US'),
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
-      home: const SplashScreen(),
+      home: const LoginPages(),
       getPages: AppRoutes.appRoutes(),
-
     );
   }
 }
